@@ -80,10 +80,6 @@ sprint_item(char* buffer, Item* item)
     sprintf(buffer, "%s, %d, %d", item->name, item->sellIn, item->quality);
 }
 
-void update_quality_single(Item *item) {
-    item->update_quality(item);
-}
-
 void
 update_quality(Item items[], int size)
 {
@@ -91,8 +87,7 @@ update_quality(Item items[], int size)
 
     for (i = 0; i < size; i++)
     {
-        Item *item = &items[i];
-        update_quality_single(item);
+        items[i].update_quality(&items[i]);
     }
 }
 
