@@ -27,7 +27,7 @@ int main()
     
     puts("OMGHAI!");
 
-    for (day = 0; day <= 30; day++)
+    for (day = 0; day <= 50; day++)
     {
         printf("-------- day %d --------\n", day);
         printf("name, sellIn, quality\n");
