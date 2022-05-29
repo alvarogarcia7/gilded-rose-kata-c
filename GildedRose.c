@@ -24,77 +24,9 @@ void update_quality_single(Item *item) {
     bool is_not_backstage_passes = strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert");
     bool is_not_sulfuras = strcmp(item->name, "Sulfuras, Hand of Ragnaros");
     if(!is_not_sulfuras){
-        if (is_not_aged_brie && is_not_backstage_passes)
-        {
-            if (item->quality > 0)
-            {
-                if (is_not_sulfuras)
-                {
-                    item->quality = item->quality - 1;
-                }
-            }
-        }
-        else
-        {
-            if (item->quality < 50)
-            {
-                item->quality = item->quality + 1;
-
-                if (!is_not_backstage_passes)
-                {
-                    if (item->sellIn < 11)
-                    {
-                        if (item->quality < 50)
-                        {
-                            item->quality = item->quality + 1;
-                        }
-                    }
-
-                    if (item->sellIn < 6)
-                    {
-                        if (item->quality < 50)
-                        {
-                            item->quality = item->quality + 1;
-                        }
-                    }
-                }
-            }
-        }
-
-        if (is_not_sulfuras)
-        {
-            item->sellIn = item->sellIn - 1;
-        }
-
-        if (item->sellIn < 0)
-        {
-            if (is_not_aged_brie)
-            {
-                if (is_not_backstage_passes)
-                {
-                    if (item->quality > 0)
-                    {
-                        if (is_not_sulfuras)
-                        {
-                            item->quality = item->quality - 1;
-                        }
-                    }
-                }
-                else
-                {
-                    item->quality = item->quality - item->quality;
-                }
-            }
-            else
-            {
-                if (item->quality < 50)
-                {
-                    item->quality = item->quality + 1;
-                }
-            }
-        }
         return;
     }
+
     if (is_not_aged_brie && is_not_backstage_passes)
     {
         if (item->quality > 0)
