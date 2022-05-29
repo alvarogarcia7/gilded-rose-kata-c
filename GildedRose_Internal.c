@@ -1,8 +1,5 @@
 #include <stdbool.h>
-#include <stdio.h>
-#include "GildedRose_Quality.h"
 #include "GildedRose.h"
-#include <string.h>
 #include "GildedRose_Internal.h"
 
 

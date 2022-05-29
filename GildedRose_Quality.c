@@ -1,4 +1,3 @@
-#include <stdbool.h>
 #include "GildedRose.h"
 #include <string.h>
 #include "GildedRose_Quality.h"
