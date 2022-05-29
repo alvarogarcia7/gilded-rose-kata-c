@@ -4,11 +4,8 @@
 #include <stdbool.h>
 
 void decrease_sell_in(Item *item);
-void increase_quality(Item *item) {
-    if (item->quality < 50) {
-        item->quality = item->quality + 1;
-    }
-}
+void decrease_quality(Item *item);
+void increase_quality(Item *item);
 
 void update_quality_aged_brie(Item *item){
     increase_quality(item);
@@ -20,6 +17,7 @@ void update_quality_aged_brie(Item *item){
         increase_quality(item);
     }
 }
+
 void update_quality_backstage_passes(Item *item){
     if (item->quality < 50) {
         increase_quality(item);
@@ -41,12 +39,6 @@ void update_quality_backstage_passes(Item *item){
 }
 
 void update_quality_sulfuras(Item *item) {
-}
-
-void decrease_quality(Item *item) {
-    if (item->quality > 0) {
-        item->quality = item->quality - 1;
-    }
 }
 
 void update_quality_default(Item *item) {
@@ -106,3 +98,15 @@ update_quality(Item items[], int size)
 
 
 void decrease_sell_in(Item *item) { item->sellIn = item->sellIn - 1; }
+
+void increase_quality(Item *item) {
+    if (item->quality < 50) {
+        item->quality = item->quality + 1;
+    }
+}
+
+void decrease_quality(Item *item) {
+    if (item->quality > 0) {
+        item->quality = item->quality - 1;
+    }
+}
