@@ -22,3 +22,17 @@ test-text: build
 	diff text-tests.txt text-tests.expected.txt
 .PHONY: test-text
 
+install: install-githooks
+
+install-githooks:
+	cp -R ./githooks/* .git/hooks/
+	chmod +x .git/hooks/
+.PHONY: install-githooks
+
+pre-commit: build test
+.PHONY: pre-commit
+
+pre-push:
+	@echo "Nothing to do"
+.PHONY: pre-push
+
