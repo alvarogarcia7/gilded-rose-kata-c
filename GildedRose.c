@@ -44,6 +44,20 @@ void update_quality_backstage_passes(Item *item){
 void update_quality_sulfuras(Item *item) {
 }
 
+void update_quality_default(Item *item) {
+    if (item->quality > 0) {
+        item->quality = item->quality - 1;
+    }
+
+    item->sellIn = item->sellIn - 1;
+
+    if (item->sellIn < 0)
+    {
+        if (item->quality > 0) {
+            item->quality = item->quality - 1;
+        }
+    }
+}
 void *obtain_update_quality(Item *item) {
     bool is_aged_brie = strcmp(item->name, "Aged Brie") == 0;
     bool is_backage_passes = strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert") == 0;
@@ -56,7 +70,7 @@ void *obtain_update_quality(Item *item) {
     } else if (is_sulfuras) {
         return &update_quality_sulfuras;
     }
-    return NULL;
+    return &update_quality_default;
 }
 
 Item*
@@ -95,18 +109,7 @@ void update_quality_single(Item *item) {
         return;
     }
 
-    if (item->quality > 0) {
-        item->quality = item->quality - 1;
-    }
-
-    item->sellIn = item->sellIn - 1;
-
-    if (item->sellIn < 0)
-    {
-        if (item->quality > 0) {
-            item->quality = item->quality - 1;
-        }
-    }
+    item->update_quality(item);
 }
 
 void
