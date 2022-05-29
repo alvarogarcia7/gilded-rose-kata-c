@@ -1,7 +1,9 @@
 #include <string.h>
 #include "GildedRose.h"
 #include <stdio.h>
+#include <stdbool.h>
 
+void decrease_sell_in(Item *item);
 void increase_quality(Item *item) {
     if (item->quality < 50) {
         item->quality = item->quality + 1;
@@ -11,7 +13,7 @@ void increase_quality(Item *item) {
 void update_quality_aged_brie(Item *item){
     increase_quality(item);
 
-    item->sellIn = item->sellIn - 1;
+    decrease_sell_in(item);
 
     if (item->sellIn < 0)
     {
@@ -30,7 +32,7 @@ void update_quality_backstage_passes(Item *item){
         }
     }
 
-    item->sellIn = item->sellIn - 1;
+    decrease_sell_in(item);
 
     if (item->sellIn < 0)
     {
@@ -50,13 +52,15 @@ void decrease_quality(Item *item) {
 void update_quality_default(Item *item) {
     decrease_quality(item);
 
-    item->sellIn = item->sellIn - 1;
+    decrease_sell_in(item);
 
-    if (item->sellIn < 0)
+    bool is_expired = item->sellIn < 0;
+    if (is_expired)
     {
         decrease_quality(item);
     }
 }
+
 void *obtain_update_quality(Item *item) {
     if (strcmp(item->name, "Aged Brie") == 0) {
         return &update_quality_aged_brie;
@@ -67,7 +71,6 @@ void *obtain_update_quality(Item *item) {
     }
     return &update_quality_default;
 }
-
 Item*
 init_item(Item* item, const char *name, int sellIn, int quality)
 {
@@ -75,11 +78,11 @@ init_item(Item* item, const char *name, int sellIn, int quality)
     item->quality = quality;
     item->name = strdup(name);
     item->update_quality = obtain_update_quality(item);
-    
+
     return item;
 }
 
-extern char* 
+extern char*
 sprint_item(char* buffer, Item* item)
 {
     sprintf(buffer, "%s, %d, %d", item->name, item->sellIn, item->quality);
@@ -100,3 +103,6 @@ update_quality(Item items[], int size)
         update_quality_single(item);
     }
 }
+
+
+void decrease_sell_in(Item *item) { item->sellIn = item->sellIn - 1; }
