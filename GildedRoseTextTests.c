@@ -9,13 +9,16 @@ print_item(Item *item)
 
 int main()
 {
-    Item items[9];
+    Item items[12];
     int last = 0;
     int day;
     int index;
     
     init_item(items + last++, "+5 Dexterity Vest", 10, 20);
     init_item(items + last++, "Aged Brie", 2, 0);
+    init_item(items + last++, "Aged Brie", 2, 40);
+    init_item(items + last++, "Aged Brie", 10, 0);
+    init_item(items + last++, "Aged Brie", 10, 40);
     init_item(items + last++, "Elixir of the Mongoose", 5, 7);
     init_item(items + last++, "Sulfuras, Hand of Ragnaros", 0, 80);
     init_item(items + last++, "Sulfuras, Hand of Ragnaros", -1, 80);

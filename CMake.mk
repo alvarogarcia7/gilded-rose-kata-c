@@ -36,3 +36,7 @@ pre-push:
 	@echo "Nothing to do"
 .PHONY: pre-push
 
+test-text-accept-golden-master:
+	cp text-tests.txt text-tests.expected.txt
+.PHONY: test-text-accept-golden-master
+
