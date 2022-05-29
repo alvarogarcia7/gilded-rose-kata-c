@@ -41,7 +41,10 @@ void update_quality_backstage_passes(Item *item){
     }
 }
 
-void * obtain_update_quality(Item *item) {
+void update_quality_sulfuras(Item *item) {
+}
+
+void *obtain_update_quality(Item *item) {
     bool is_aged_brie = strcmp(item->name, "Aged Brie") == 0;
     bool is_backage_passes = strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert") == 0;
     bool is_sulfuras = !strcmp(item->name, "Sulfuras, Hand of Ragnaros");
@@ -50,6 +53,8 @@ void * obtain_update_quality(Item *item) {
         return &update_quality_aged_brie;
     } else if (is_backage_passes) {
         return &update_quality_backstage_passes;
+    } else if (is_sulfuras) {
+        return &update_quality_sulfuras;
     }
     return NULL;
 }
@@ -76,6 +81,7 @@ void update_quality_single(Item *item) {
     bool is_backage_passes = strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert") == 0;
     bool is_sulfuras = !strcmp(item->name, "Sulfuras, Hand of Ragnaros");
     if(is_sulfuras){
+        item->update_quality(item);
         return;
     }
 
