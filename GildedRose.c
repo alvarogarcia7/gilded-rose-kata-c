@@ -59,15 +59,11 @@ void update_quality_default(Item *item) {
     }
 }
 void *obtain_update_quality(Item *item) {
-    bool is_aged_brie = strcmp(item->name, "Aged Brie") == 0;
-    bool is_backage_passes = strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert") == 0;
-    bool is_sulfuras = !strcmp(item->name, "Sulfuras, Hand of Ragnaros");
-
-    if (is_aged_brie) {
+    if (strcmp(item->name, "Aged Brie") == 0) {
         return &update_quality_aged_brie;
-    } else if (is_backage_passes) {
+    } else if (strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert") == 0) {
         return &update_quality_backstage_passes;
-    } else if (is_sulfuras) {
+    } else if (!strcmp(item->name, "Sulfuras, Hand of Ragnaros")) {
         return &update_quality_sulfuras;
     }
     return &update_quality_default;
