@@ -23,7 +23,6 @@ void update_quality_single(Item *item) {
     bool is_not_aged_brie = strcmp(item->name, "Aged Brie");
     bool is_not_backstage_passes = strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert");
     bool is_sulfuras = !strcmp(item->name, "Sulfuras, Hand of Ragnaros");
-    bool is_not_sulfuras = !is_sulfuras;
     if(is_sulfuras){
         return;
     }
@@ -32,7 +31,7 @@ void update_quality_single(Item *item) {
     {
         if (item->quality > 0)
         {
-            if (is_not_sulfuras)
+            if (!is_sulfuras)
             {
                 item->quality = item->quality - 1;
             }
@@ -65,7 +64,7 @@ void update_quality_single(Item *item) {
         }
     }
 
-    if (is_not_sulfuras)
+    if (!is_sulfuras)
     {
         item->sellIn = item->sellIn - 1;
     }
@@ -78,7 +77,7 @@ void update_quality_single(Item *item) {
             {
                 if (item->quality > 0)
                 {
-                    if (is_not_sulfuras)
+                    if (!is_sulfuras)
                     {
                         item->quality = item->quality - 1;
                     }
