@@ -31,10 +31,7 @@ void update_quality_single(Item *item) {
     {
         if (item->quality > 0)
         {
-            if (!is_sulfuras)
-            {
-                item->quality = item->quality - 1;
-            }
+            item->quality = item->quality - 1;
         }
     }
     else
@@ -64,10 +61,7 @@ void update_quality_single(Item *item) {
         }
     }
 
-    if (!is_sulfuras)
-    {
-        item->sellIn = item->sellIn - 1;
-    }
+    item->sellIn = item->sellIn - 1;
 
     if (item->sellIn < 0)
     {
@@ -77,10 +71,7 @@ void update_quality_single(Item *item) {
             {
                 if (item->quality > 0)
                 {
-                    if (!is_sulfuras)
-                    {
-                        item->quality = item->quality - 1;
-                    }
+                    item->quality = item->quality - 1;
                 }
             }
             else
