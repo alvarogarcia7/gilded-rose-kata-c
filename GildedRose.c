@@ -1,35 +1,32 @@
 #include <string.h>
 #include "GildedRose.h"
 #include <stdio.h>
-#include <stdbool.h>
 
-void update_quality_aged_brie(Item *item){
+void increase_quality(Item *item) {
     if (item->quality < 50) {
         item->quality = item->quality + 1;
     }
+}
+
+void update_quality_aged_brie(Item *item){
+    increase_quality(item);
 
     item->sellIn = item->sellIn - 1;
 
     if (item->sellIn < 0)
     {
-        if (item->quality < 50) {
-            item->quality = item->quality + 1;
-        }
+        increase_quality(item);
     }
 }
 void update_quality_backstage_passes(Item *item){
     if (item->quality < 50) {
-        item->quality = item->quality + 1;
+        increase_quality(item);
 
         if (item->sellIn < 11) {
-            if (item->quality < 50) {
-                item->quality = item->quality + 1;
-            }
+            increase_quality(item);
         }
         if (item->sellIn < 6) {
-            if (item->quality < 50) {
-                item->quality = item->quality + 1;
-            }
+            increase_quality(item);
         }
     }
 
