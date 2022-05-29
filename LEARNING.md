@@ -26,3 +26,14 @@ FetchContent_Declare(
 ```
 
 To make it case-insensitive (or use any other name), use CMake's `find_library` + `NAMES` parameter ([reference](https://cmake.org/cmake/help/latest/command/find_library.html))
+
+## Untested code gets rusty
+
+2022-05-29 19:56:57 AGB
+
+By not using the original `Makefile`, run\_once.sh, etc, it was not being tested. 
+
+I wanted to leave it for compatibility with the previous repo, but it got rusty of not being used.
+
+Better to remove.
+
