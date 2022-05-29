@@ -22,8 +22,8 @@ sprint_item(char* buffer, Item* item)
 void update_quality_single(Item *item) {
     bool is_not_aged_brie = strcmp(item->name, "Aged Brie");
     bool is_not_backstage_passes = strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert");
-    bool is_not_sulfuras = strcmp(item->name, "Sulfuras, Hand of Ragnaros");
-    bool is_sulfuras = !is_not_sulfuras;
+    bool is_sulfuras = !strcmp(item->name, "Sulfuras, Hand of Ragnaros");
+    bool is_not_sulfuras = !is_sulfuras;
     if(is_sulfuras){
         return;
     }
