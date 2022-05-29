@@ -34,25 +34,27 @@ void update_quality_backstage_passes(Item *item){
 
     if (item->sellIn < 0)
     {
-        item->quality = item->quality - item->quality;
+        item->quality = 0;
     }
 }
 
 void update_quality_sulfuras(Item *item) {
 }
 
-void update_quality_default(Item *item) {
+void decrease_quality(Item *item) {
     if (item->quality > 0) {
         item->quality = item->quality - 1;
     }
+}
+
+void update_quality_default(Item *item) {
+    decrease_quality(item);
 
     item->sellIn = item->sellIn - 1;
 
     if (item->sellIn < 0)
     {
-        if (item->quality > 0) {
-            item->quality = item->quality - 1;
-        }
+        decrease_quality(item);
     }
 }
 void *obtain_update_quality(Item *item) {
