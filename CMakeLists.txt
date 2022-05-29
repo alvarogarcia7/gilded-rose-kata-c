@@ -29,6 +29,8 @@ add_executable(unit-tests
         )
 
 add_library(prod_lib
+        GildedRose_Quality.c
+        GildedRose_Internal.c
         GildedRose.c)
 
 target_link_libraries(text-tests

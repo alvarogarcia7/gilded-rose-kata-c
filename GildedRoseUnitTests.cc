@@ -1,6 +1,5 @@
 #include "CppUTest/TestHarness.h"
 #include <CppUTest/CommandLineTestRunner.h>
-#include <CppUTestExt/MockSupport.h>
 
 extern "C" {
 #include "GildedRose.h"

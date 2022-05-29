@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "GildedRose.h"
+#include "GildedRose_Internal.h"
 
 int
 print_item(Item *item)
