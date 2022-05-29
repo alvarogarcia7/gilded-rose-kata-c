@@ -2,5 +2,5 @@
 
 set -euxo pipefail
 
-make -f CMake.mk pre-push
+make pre-push
 
