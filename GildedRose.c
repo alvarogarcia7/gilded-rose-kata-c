@@ -3,12 +3,42 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+void update_quality_aged_brie(Item *item){
+    if (item->quality < 50) {
+        item->quality = item->quality + 1;
+    }
+
+    item->sellIn = item->sellIn - 1;
+
+    if (item->sellIn < 0)
+    {
+        if (item->quality < 50) {
+            item->quality = item->quality + 1;
+        }
+    }
+}
+
+void * obtain_update_quality(Item *item) {
+
+    bool is_aged_brie = strcmp(item->name, "Aged Brie") == 0;
+    bool is_backage_passes = strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert") == 0;
+    bool is_sulfuras = !strcmp(item->name, "Sulfuras, Hand of Ragnaros");
+
+    if (is_aged_brie) {
+        return &update_quality_aged_brie;
+    } else if (is_backage_passes) {
+
+    }
+    return NULL;
+}
+
 Item*
 init_item(Item* item, const char *name, int sellIn, int quality)
 {
     item->sellIn = sellIn;
     item->quality = quality;
     item->name = strdup(name);
+    item->update_quality = obtain_update_quality(item);
     
     return item;
 }
@@ -28,19 +58,7 @@ void update_quality_single(Item *item) {
     }
 
     if(is_aged_brie){
-        if (item->quality < 50) {
-            item->quality = item->quality + 1;
-        }
-
-        item->sellIn = item->sellIn - 1;
-
-        if (item->sellIn < 0)
-        {
-            if (item->quality < 50) {
-                item->quality = item->quality + 1;
-            }
-        }
-
+        item->update_quality(item);
         return;
     }
 
