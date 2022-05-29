@@ -1,2 +1,6 @@
 /.idea/
 /cmake-build-*/
+
+# Golden Master tests
+text-tests.txt
+

@@ -9,8 +9,16 @@ build:
 clean:
 	rm -rf ./cmake-build*
 
-test:
-	./cmake-build-debug/unit-tests
-	./cmake-build-debug/text-tests
+test: test-unit test-text
 	@echo "All tests passing"
 .PHONY: test
+
+test-unit: build
+	./cmake-build-debug/unit-tests
+.PHONY: test-unit
+
+test-text: build
+	./cmake-build-debug/text-tests > text-tests.txt
+	diff text-tests.txt text-tests.expected.txt
+.PHONY: test-text
+
