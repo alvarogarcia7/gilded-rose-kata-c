@@ -6,33 +6,32 @@
 void decrease_sell_in(Item *item);
 void decrease_quality(Item *item);
 void increase_quality(Item *item);
+bool is_expired(Item *item);
 
 void update_quality_aged_brie(Item *item){
     increase_quality(item);
 
     decrease_sell_in(item);
 
-    if (item->sellIn < 0)
+    if (is_expired(item))
     {
         increase_quality(item);
     }
 }
 
 void update_quality_backstage_passes(Item *item){
-    if (item->quality < 50) {
-        increase_quality(item);
+    increase_quality(item);
 
-        if (item->sellIn < 11) {
-            increase_quality(item);
-        }
-        if (item->sellIn < 6) {
-            increase_quality(item);
-        }
+    if (item->sellIn < 11) {
+        increase_quality(item);
+    }
+    if (item->sellIn < 6) {
+        increase_quality(item);
     }
 
     decrease_sell_in(item);
 
-    if (item->sellIn < 0)
+    if (is_expired(item))
     {
         item->quality = 0;
     }
@@ -46,8 +45,7 @@ void update_quality_default(Item *item) {
 
     decrease_sell_in(item);
 
-    bool is_expired = item->sellIn < 0;
-    if (is_expired)
+    if (is_expired(item))
     {
         decrease_quality(item);
     }
@@ -95,7 +93,8 @@ update_quality(Item items[], int size)
 void decrease_sell_in(Item *item) { item->sellIn = item->sellIn - 1; }
 
 void increase_quality(Item *item) {
-    if (item->quality < 50) {
+    const int MAXIMUM_QUALITY = 50;
+    if (item->quality < MAXIMUM_QUALITY) {
         item->quality = item->quality + 1;
     }
 }
@@ -104,4 +103,8 @@ void decrease_quality(Item *item) {
     if (item->quality > 0) {
         item->quality = item->quality - 1;
     }
+}
+
+bool is_expired(Item *item) {
+    return item->sellIn < 0;
 }
