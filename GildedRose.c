@@ -30,20 +30,6 @@ void update_quality_single(Item *item) {
     if(is_aged_brie){
         if (item->quality < 50) {
             item->quality = item->quality + 1;
-
-            if (is_backage_passes) {
-                if (item->sellIn < 11) {
-                    if (item->quality < 50) {
-                        item->quality = item->quality + 1;
-                    }
-                }
-
-                if (item->sellIn < 6) {
-                    if (item->quality < 50) {
-                        item->quality = item->quality + 1;
-                    }
-                }
-            }
         }
 
         item->sellIn = item->sellIn - 1;
