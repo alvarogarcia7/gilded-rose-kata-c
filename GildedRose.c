@@ -1,6 +1,7 @@
 #include <string.h>
 #include "GildedRose.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 Item*
 init_item(Item* item, const char *name, int sellIn, int quality)
@@ -19,11 +20,14 @@ sprint_item(char* buffer, Item* item)
 }
 
 void update_quality_single(Item *item) {
-    if (strcmp(item->name, "Aged Brie") && strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert"))
+    bool is_not_aged_brie = strcmp(item->name, "Aged Brie");
+    bool is_not_backstage_passes = strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert");
+    bool is_not_sulfuras = strcmp(item->name, "Sulfuras, Hand of Ragnaros");
+    if (is_not_aged_brie && is_not_backstage_passes)
     {
         if (item->quality > 0)
         {
-            if (strcmp(item->name, "Sulfuras, Hand of Ragnaros"))
+            if (is_not_sulfuras)
             {
                 item->quality = item->quality - 1;
             }
@@ -35,7 +39,7 @@ void update_quality_single(Item *item) {
         {
             item->quality = item->quality + 1;
 
-            if (!strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert"))
+            if (!is_not_backstage_passes)
             {
                 if (item->sellIn < 11)
                 {
@@ -56,20 +60,20 @@ void update_quality_single(Item *item) {
         }
     }
 
-    if (strcmp(item->name, "Sulfuras, Hand of Ragnaros"))
+    if (is_not_sulfuras)
     {
         item->sellIn = item->sellIn - 1;
     }
 
     if (item->sellIn < 0)
     {
-        if (strcmp(item->name, "Aged Brie"))
+        if (is_not_aged_brie)
         {
-            if (strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert"))
+            if (is_not_backstage_passes)
             {
                 if (item->quality > 0)
                 {
-                    if (strcmp(item->name, "Sulfuras, Hand of Ragnaros"))
+                    if (is_not_sulfuras)
                     {
                         item->quality = item->quality - 1;
                     }
