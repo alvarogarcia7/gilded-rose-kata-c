@@ -21,13 +21,13 @@ sprint_item(char* buffer, Item* item)
 
 void update_quality_single(Item *item) {
     bool is_aged_brie = strcmp(item->name, "Aged Brie") == 0;
-    bool is_not_backstage_passes = strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert");
+    bool is_backage_passes = strcmp(item->name, "Backstage passes to a TAFKAL80ETC concert") == 0;
     bool is_sulfuras = !strcmp(item->name, "Sulfuras, Hand of Ragnaros");
     if(is_sulfuras){
         return;
     }
 
-    if (!is_aged_brie && is_not_backstage_passes)
+    if (!is_aged_brie && !is_backage_passes)
     {
         if (item->quality > 0)
         {
@@ -40,7 +40,7 @@ void update_quality_single(Item *item) {
         {
             item->quality = item->quality + 1;
 
-            if (!is_not_backstage_passes)
+            if (!!is_backage_passes)
             {
                 if (item->sellIn < 11)
                 {
@@ -67,7 +67,7 @@ void update_quality_single(Item *item) {
     {
         if (!is_aged_brie)
         {
-            if (is_not_backstage_passes)
+            if (!is_backage_passes)
             {
                 if (item->quality > 0)
                 {
