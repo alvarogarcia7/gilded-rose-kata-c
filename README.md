@@ -11,6 +11,7 @@
 1. C Code is cleaner, as rules are independent
 1. Managed to setup CMake + FetchContent_Declare. Had to look at the refence + previous projects
 1. Size of the step: ~31 commits in ~1h (average every 2 minutes; refactoring average is much higher than average while thinking / designing)
+1. Did not finish the 'Conjured' items.
 
 ## Steps
 
