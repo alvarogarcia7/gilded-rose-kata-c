@@ -13,7 +13,7 @@ init_item(Item* item, const char *name, int sellIn, int quality)
 }
 
 extern char* 
-print_item(char* buffer, Item* item) 
+sprint_item(char* buffer, Item* item)
 {
     sprintf(buffer, "%s, %d, %d", item->name, item->sellIn, item->quality);
 }

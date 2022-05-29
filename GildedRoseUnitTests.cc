@@ -1,4 +1,4 @@
-#include <CppUTest/TestHarness.h>
+#include "CppUTest/TestHarness.h"
 #include <CppUTest/CommandLineTestRunner.h>
 #include <CppUTestExt/MockSupport.h>
 
@@ -19,7 +19,7 @@ TEST(TestGildedRoseGroup, FirstTest)
     Item items[1];
     init_item(items, "Foo", 0, 0);
     update_quality(items, 1);
-    STRCMP_EQUAL("fixme", items[0].name);
+    STRCMP_EQUAL("Foo", items[0].name);
 }
 
 void example()
